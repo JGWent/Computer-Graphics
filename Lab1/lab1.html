@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+                <title>lab1</title>
+
+        <script id="vertex-shader" type="x-shader/x-vertex">
+            //Vertex Shader Code Here
+            attribute vec4 myPosition;
+
+            void main() {
+                gl_Position = myPosition;
+                gl_PointSize = 1.0;
+            }
+        </script>
+
+        <script id="fragment-shader-square" type="x-shader/x-fragment">
+            //Fragment Shader Code Here
+            void main() {
+                gl_FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );
+            }
+        </script>
+
+        <script id="fragment-shader-ellipse" type="x-shader/x-fragment">
+            //Fragment Shader Code Here
+            void main() {
+                gl_FragColor = vec4( 0.0, 0.0, 1.0, 1.0 );
+            }
+        </script>
+
+        <script id="fragment-shader-star" type="x-shader/x-fragment">
+            //Fragment Shader Code Here
+            void main() {
+                gl_FragColor = vec4( -1.0, -1.0, -1.0, 1.0 );
+            }
+        </script>
+
+        <script type="text/javascript" src="Common/webgl-utils.js"></script>
+        <script type="text/javascript" src="Common/initShaders.js"></script>
+        <script type="text/javascript" src="Common/MV.js"></script>
+        <script type="text/javascript" src="lab1.js"></script>
+    </head>
+
+    <body onload="init()">
+        <canvas width="1024" height="512" id="gl-canvas">
+
+        </canvas>
+    </body>
+</html>

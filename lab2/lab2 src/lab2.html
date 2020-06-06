@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+            <title>Lab 2 Animation</title>
+            <script type="text/javascript" src="../Common/webgl-utils.js"></script>
+            <script type="text/javascript" src="../Common/initShaders.js"></script>
+            <script type="text/javascript" src="../Common/MV.js"></script>
+            <script type="text/javascript" src="lab2.js"></script>
+            
+            <script type="x-shader/x-vertex" id="vertex-shader-Star">
+                attribute vec4 myPosition;
+                uniform float theta;
+                uniform vec2 t;
+                void main() {
+
+                    float xi = myPosition.x;
+                    float yi = myPosition.y;
+
+                    float xf = xi * cos(theta) + yi * sin(theta) + t.x;
+                    float yf = -xi * sin(theta) + yi * cos(theta) + t.y;
+
+                    gl_Position.x = xf;
+                    gl_Position.y = yf;
+                    gl_Position.z = 0.0;
+                    gl_Position.w = 1.0;
+
+                    gl_PointSize = 1.0;
+                }
+                </script>
+            
+            <script type="x-shader/x-fragment" id="fragment-shader-Star">
+                void main() {
+                    gl_FragColor = vec4( 0.0, 0.0, 1.0, 1.0 );
+                }
+            </script>
+    </head>
+    
+    <body onload="init()" onkeydown="moveStarKeys(event)">
+        <canvas width="512" height="512" id="gl-canvas" onclick="moveStar(event)">
+        </canvas><br/>
+
+        <button id="speedDecrease" onclick="speedDecrease()">
+            Decrease
+        </button>
+        <button id="speedIncrease" onclick="speedIncrease()">
+            Increase
+        </button>
+
+        <button id="startRotate" onclick="startRotate()">
+            Start Rotate
+        </button>
+        <button id="stopRotate" onclick="stopRotate()">
+            Stop Rotate
+        </button>
+    </body>
+</html>
+

@@ -1,0 +1,112 @@
+<!-- John Graham and Sam Woodworth -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+            <title>Project 1 Game</title>
+            <script type="text/javascript" src="../Common/webgl-utils.js"></script>
+            <script type="text/javascript" src="../Common/initShaders.js"></script>
+            <script type="text/javascript" src="../Common/MV.js"></script>
+            <script type="text/javascript" src="project1.js"></script>
+            
+            <script type="x-shader/x-vertex" id="vertex-shader-Shapes">
+                attribute vec4 myPosition;
+                uniform float theta;
+                uniform float xj;
+                uniform float yj;
+                uniform vec2 t;
+                void main() {
+
+                    float xi = myPosition.x;
+                    float yi = myPosition.y;
+
+                    float xf = xi * cos(theta) + yi * sin(theta) + t.x;
+                    float yf = -xi * sin(theta) + yi * cos(theta) + t.y;
+
+                    gl_Position.x = xf;
+                    gl_Position.y = yf;
+                    gl_Position.z = 0.0;
+                    gl_Position.w = 1.0;
+
+                    gl_PointSize = 1.0;
+                }
+                </script>
+            
+            <script type="x-shader/x-fragment" id="fragment-shader-Square">
+                void main() {
+                    gl_FragColor = vec4( 0.0, 0.0, 1.0, 1.0 );
+                }
+            </script>
+
+            <script type="x-shader/x-fragment" id="fragment-shader-Triangle">
+                void main() {
+                    gl_FragColor = vec4( 0.0, 1.0, 1.0, 1.0 );
+                }
+            </script>
+
+            <script type="x-shader/x-fragment" id="fragment-shader-Pentagon">
+                void main() {
+                    gl_FragColor = vec4( 1.0, 0.0, 1.0, 1.0 );
+                }
+            </script>
+
+            <script type="x-shader/x-fragment" id="fragment-shader-Octagon">
+                void main() {
+                    gl_FragColor = vec4( 1.0, 1.0, 0.0, 1.0 );
+                }
+            </script>
+
+            <script type="x-shader/x-fragment" id="fragment-shader-Trapezoid">
+                void main() {
+                    gl_FragColor = vec4( 0.0, 1.0, 0.0, 1.0 );
+                }
+            </script>
+
+            <script type="x-shader/x-fragment" id="fragment-shader-Circle">
+                void main() {
+                    gl_FragColor = vec4( 0.5, 1.0, 1.0, 1.0 );
+                }
+            </script>
+
+            <script type="x-shader/x-vertex" id="vertex-shader-Bad">
+                attribute vec4 myPosition;
+                uniform float theta;
+                uniform float xj;
+                uniform float yj;
+                uniform vec2 t;
+                void main() {
+
+                    float xi = myPosition.x;
+                    float yi = myPosition.y;
+
+                    float xf = xi * cos(theta) + yi * sin(theta) + t.x;
+                    float yf = -xi * sin(theta) + yi * cos(theta) + t.y;
+
+                    gl_Position.x = xf;
+                    gl_Position.y = yf;
+                    gl_Position.z = 0.0;
+                    gl_Position.w = 1.0;
+
+                    gl_PointSize = 1.0;
+                }
+                </script>
+            
+            <script type="x-shader/x-fragment" id="fragment-shader-Bad">
+                void main() {
+                    gl_FragColor = vec4( 0.0, 0.0, 0.0, 1.0 );
+                }
+            </script>
+
+    </head>
+    
+    <body onload="init()">
+        <canvas width="512" height="512" id="gl-canvas" onclick="moveShape(event)">
+        </canvas>
+        <button onclick="startTimer()">Start</button><br/>
+        <text>Click on the center of shapes that appear to get points. Get 50 points before the 60 second timer runs out to win!</text><br/>
+        <text>The shape will change every 10 points. If the black circle is clicked 1 Point will be lost</text><br/>
+        <text>Time Left: <c id="c">60</c> seconds</text><br/>
+        <text>Score: <score id="s">0</score> Points</text>
+    </body>
+</html>
+
